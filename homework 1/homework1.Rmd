@@ -1,0 +1,32 @@
+---
+title: "HomeWork Part 1"
+output: html_notebook
+---
+
+Construya una matriz de 5 x 5 con valores aleatorios decimales que vayan en un rango de 160 a 200. 
+Esta matriz contendrá los pesos (en libras) de varias personas. Asigne un nombre descriptivo a esta matriz.
+
+
+```{r}
+pesos <- matrix(runif(25,min = 160,max = 200),nrow = 5,ncol = 5)
+
+#Asigne los meses enero a mayo como nombre de cada columna
+
+colnames(pesos) <- c("enero","febreo","marzo","abril","mayo")
+rownames(pesos) <- c("Berny","Andree","Alejandra","Rosaura","Karla")
+
+#Construya un vector que contenga el peso promedio de cada persona durante los meses de enero a mayo.
+#(Investigue una función similar a rowSums pero para promediar)
+
+promedio_persona <- rowMeans(pesos)
+
+#Construya un vector que contenga el peso promedio en cada mes para todas las personas.
+promedio_mes <- colMeans(pesos)
+
+pesos_promedio_mes <- rbind(pesos,promedio_mes)
+pesos_con_promedios <- cbind(pesos_promedio_mes, promedio_persona)
+
+pesos_con_promedios
+```
+
+
