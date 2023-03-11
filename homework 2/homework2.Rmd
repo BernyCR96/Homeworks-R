@@ -1,0 +1,95 @@
+---
+title: "Homework-2"
+output: html_notebook
+---
+Function in R
+A function is defined by an assignment of the form
+
+name <- function() expression
+for example
+
+```{r}
+sum <- function(){
+  1+1
+}
+
+value <- sum()
+value
+```
+You can add arguments in function
+```{r}
+squared_value <- function(n){
+  n^2
+}
+
+value <- squared_value(10)
+value
+```
+
+The '...' argument
+Another frequent requirement is to allow one function to pass on argument settings to another. 
+
+
+```{r}
+
+sumar_numero_impares <- function(...)
+{
+  
+  values <- c(...)
+  if(!is.numeric(values)) return('NaN')
+ 
+  cont <- 0
+  for(n in values){
+    if(n%%2 != 0){
+      cont <- cont + n
+    }
+  }
+cont
+}
+
+sumar_numero_impares(c(1,2,3,4,5,6,8,2,4,2,35,5))
+
+```
+  
+Default values
+
+```{r}
+whileFunc <- function(x, limit=10){
+  cont <- 0
+  while(cont <= limit){
+      print(cont)  
+    cont <- cont + 1
+  }
+}
+whileFunc(15)
+```
+Family Apply: lapply, sapply, vapply
+
+lapply: applies a function to a list or a vector, returning a list of the same length as the input.
+for example, we use square_value fuction declared above
+
+```{r}
+vecLapply <-  c(12, 18, 6,9,64)
+lapply(vecLapply, squared_value)
+```
+
+sapply: The main difference between the functions is that lapply returns a list instead of an array. However,
+if you set simplify = FALSE to the sapply function both will return a list.
+
+for example
+```{r}
+vecSapply <-  c(12, 18, 6,9,64)
+sapply(vecLapply, squared_value)
+sapply(vecLapply, squared_value, simplify = FALSE)
+```
+
+vapply: is similar that the sapply function, but when using vapply we need to specify the output type explicitly. 
+In this example, we will return an numeric
+
+```{r}
+vecVapply <-  c(12, 18, 6,9,64)
+vapply(vecVapply, squared_value, FUN.VALUE = numeric(1))
+```
+
+
+
